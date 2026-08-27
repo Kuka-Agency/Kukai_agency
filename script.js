@@ -135,7 +135,7 @@
     if (!grid) return;
     var isMobile = window.matchMedia('(max-width:768px)').matches;
     if (isMobile) return; // CSS handles mobile single-column full-width layout
-    var cards = Array.prototype.slice.call(grid.children);
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card:not([hidden])'));
     shuffle(cards);
     var pairTemplates = [
       [{ gridColumn: 'span 3', aspectRatio: '4/5', alignSelf: '' }, { gridColumn: 'span 3', aspectRatio: '4/5', alignSelf: '' }],
@@ -146,11 +146,18 @@
     shuffle(pairTemplates);
     pairTemplates.forEach(function (pair) { shuffle(pair); });
     var layouts = pairTemplates.reduce(function (a, b) { return a.concat(b); }, []);
+    // An odd number of visible cards would leave a half-empty final row: the last
+    // card closes the grid full-width instead.
+    if (cards.length % 2 === 1) {
+      layouts = layouts.slice(0, cards.length - 1);
+      layouts.push({ gridColumn: 'span 6', aspectRatio: '16/7', alignSelf: '' });
+    }
     cards.forEach(function (card, i) {
+      var layout = layouts[i % layouts.length];
       grid.appendChild(card);
-      card.style.gridColumn = layouts[i].gridColumn;
-      card.style.aspectRatio = layouts[i].aspectRatio;
-      card.style.alignSelf = layouts[i].alignSelf;
+      card.style.gridColumn = layout.gridColumn;
+      card.style.aspectRatio = layout.aspectRatio;
+      card.style.alignSelf = layout.alignSelf;
     });
   }
 
