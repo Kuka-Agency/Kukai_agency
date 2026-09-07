@@ -52,6 +52,10 @@ a[aria-disabled="true"] { cursor: default; }
 .field { font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; border: none; border-bottom: 1px solid oklch(80% 0.005 90); background: transparent; padding: 8px 0; outline: none; color: oklch(12% 0.002 90); width: 100%; }
 .field::placeholder { color: oklch(60% 0.005 90); }
 textarea.field { resize: none; font-family: inherit; }
+.form-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.form-status { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; line-height: 1.5; color: oklch(45% 0.005 90); margin: 0; }
+.form-status:empty { display: none; }
+.form-status--error { color: #EF3E36; }
 .btn-submit { margin-top: 12px; background: #EF3E36; color: #fff; text-align: center; padding: 16px; font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; width: 100%; }
 
 /* Opening */

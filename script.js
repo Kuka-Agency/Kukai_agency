@@ -208,11 +208,37 @@
   }
 
   /* ---------- Modals ---------- */
-  function openModal(overlay) { overlay.classList.add('is-open'); }
+  function openModal(overlay) {
+    var status = overlay.querySelector('.form-status');
+    if (status) { status.className = 'form-status'; status.textContent = ''; }
+    overlay.classList.add('is-open');
+  }
   function closeModal(overlay) { overlay.classList.remove('is-open'); }
 
-  function mailto(address, subject, body) {
-    window.location.href = 'mailto:' + address + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  /* Netlify Forms submission — posts in place, never opens a mail client. */
+  function submitNetlifyForm(form, statusEl, successText) {
+    var btn = form.querySelector('.btn-submit');
+    var originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending';
+    statusEl.className = 'form-status';
+    statusEl.textContent = '';
+
+    fetch(form.getAttribute('action') || '/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      statusEl.textContent = successText;
+    }).catch(function () {
+      statusEl.className = 'form-status form-status--error';
+      statusEl.textContent = 'Something went wrong. Please try again.';
+    }).then(function () {
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    });
   }
 
   /* ---------- Init ---------- */
@@ -266,10 +292,7 @@
     $('#contactClose').addEventListener('click', function () { closeModal(contactOverlay); });
     $('#contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = $('#contactName').value, email = $('#contactEmail').value, message = $('#contactMessage').value;
-      mailto('hello@kukai.agency', 'Connect: ' + (name || 'New enquiry'), message + '\n\n— ' + name + '\n' + email);
-      closeModal(contactOverlay);
-      e.target.reset();
+      submitNetlifyForm(e.target, $('#contactStatus'), 'Thank you. We\u2019ll be in touch.');
     });
 
     var demoOverlay = $('#demoOverlay');
@@ -277,12 +300,7 @@
     $('#demoClose').addEventListener('click', function () { closeModal(demoOverlay); });
     $('#demoForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = $('#demoName').value, company = $('#demoCompany').value, jobTitle = $('#demoJobTitle').value,
-          email = $('#demoEmail').value, phone = $('#demoPhone').value, website = $('#demoWebsite').value;
-      mailto('hello@kukai.agency', 'Culture Codified Demo Request: ' + (company || name),
-        'Name: ' + name + '\nCompany: ' + company + '\nJob Title: ' + jobTitle + '\nEmail: ' + email + '\nPhone: ' + phone + '\nWebsite: ' + website);
-      closeModal(demoOverlay);
-      e.target.reset();
+      submitNetlifyForm(e.target, $('#demoStatus'), 'Thank you. Your submission has been received.');
     });
 
     $('#footerEmail').addEventListener('click', function (e) { e.preventDefault(); openModal(contactOverlay); });

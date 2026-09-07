@@ -49,11 +49,14 @@
     <button type="button" class="modal-close" id="contactClose">Close</button>
     <div class="modal-title">Connect</div>
     <div class="modal-sub">Tell us who you are and what you have in mind.</div>
-    <form class="modal-form" id="contactForm">
-      <input class="field" type="text" placeholder="Name" id="contactName" required>
-      <input class="field" type="email" placeholder="Email" id="contactEmail" required>
-      <textarea class="field" placeholder="Message" id="contactMessage" rows="4"></textarea>
+    <form class="modal-form" id="contactForm" name="connect" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="connect">
+      <p class="form-hp"><label>Do not fill this in <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <input class="field" type="text" placeholder="Name" id="contactName" name="name" aria-label="Name" autocomplete="name" required>
+      <input class="field" type="email" placeholder="Email" id="contactEmail" name="email" aria-label="Email" autocomplete="email" required>
+      <textarea class="field" placeholder="Message" id="contactMessage" name="message" aria-label="Message" rows="4"></textarea>
       <button type="submit" class="btn-submit">Send</button>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </div>
@@ -67,14 +70,17 @@
     <p class="modal-copy">Rather than searching by industry, we organise talent by the conversations they shape—because culture doesn't move in sectors, it moves through ideas.</p>
     <p class="modal-copy modal-copy--last">Complete the form below to request a personalised demo, and we'll show you how Culture Codified™ can help you find the right voice for your next collaboration.</p>
     <div class="modal-label">Your Details</div>
-    <form class="modal-form" id="demoForm">
-      <input class="field" type="text" placeholder="Name" id="demoName" required>
-      <input class="field" type="text" placeholder="Company" id="demoCompany" required>
-      <input class="field" type="text" placeholder="Job Title" id="demoJobTitle">
-      <input class="field" type="email" placeholder="Email Address" id="demoEmail" required>
-      <input class="field" type="tel" placeholder="Phone Number (optional)" id="demoPhone">
-      <input class="field" type="text" placeholder="Company Website" id="demoWebsite">
+    <form class="modal-form" id="demoForm" name="culture-codified" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="culture-codified">
+      <p class="form-hp"><label>Do not fill this in <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <input class="field" type="text" placeholder="Name" id="demoName" name="name" aria-label="Name" autocomplete="name" required>
+      <input class="field" type="text" placeholder="Company" id="demoCompany" name="company" aria-label="Company" autocomplete="organization" required>
+      <input class="field" type="text" placeholder="Job Title" id="demoJobTitle" name="job-title" aria-label="Job Title" autocomplete="organization-title">
+      <input class="field" type="email" placeholder="Email Address" id="demoEmail" name="email" aria-label="Email Address" autocomplete="email" required>
+      <input class="field" type="tel" placeholder="Phone Number (optional)" id="demoPhone" name="phone" aria-label="Phone Number (optional)" autocomplete="tel">
+      <input class="field" type="text" placeholder="Company Website" id="demoWebsite" name="website" aria-label="Company Website" inputmode="url">
       <button type="submit" class="btn-submit">Request Demo</button>
+      <p class="form-status" id="demoStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </div>
