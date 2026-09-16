@@ -26,6 +26,11 @@ a[aria-disabled="true"] { cursor: default; }
 .nav-logo { position: absolute; top: 28px; left: 40px; font-family: 'General Sans', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: oklch(12% 0.002 90); cursor: pointer; background: none; border: none; padding: 0; }
 .menu-toggle { position: absolute; top: 0; right: 0; width: 39px; height: 96px; background: #EF3E36; cursor: pointer; transition: height 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.4s ease; border: none; padding: 0; }
 .menu-toggle.is-open { height: 0; transform: rotate(180deg); }
+.menu-toggle:hover { background: #d92f27; }
+.menu-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; gap: 5px; pointer-events: none; }
+.menu-icon span { display: block; width: 17px; height: 2px; background: #fff; }
+.menu-label { position: absolute; top: 0; right: 39px; height: 96px; display: flex; align-items: center; padding-right: 18px; font-family: 'General Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(50% 0.005 90); pointer-events: none; transition: opacity 0.3s ease; }
+.menu-panel.is-open ~ .menu-label, .nav:has(.menu-panel.is-open) .menu-label { opacity: 0; }
 .menu-panel { position: absolute; top: 0; right: 0; width: 180px; height: 0; overflow: hidden; background: #EF3E36; cursor: pointer; transition: height 0.5s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 22px; }
 .menu-panel.is-open { height: 280px; }
 .menu-item { font-family: 'General Sans', sans-serif; font-size: 15px; font-weight: 600; color: oklch(98% 0.002 90); white-space: nowrap; padding-right: 28px; opacity: 0; transform: translateX(10px); transition: opacity 0.3s ease, transform 0.3s ease; background: none; border: none; }
@@ -176,6 +181,9 @@ textarea.field { resize: none; font-family: inherit; }
   .nav-bg { height: 62px; }
   .nav-logo { top: 19px; left: 22px; font-size: 20px; }
   .menu-toggle { width: 26px; height: 62px; }
+  .menu-icon { gap: 4px; }
+  .menu-icon span { width: 13px; }
+  .menu-label { right: 26px; height: 62px; padding-right: 12px; font-size: 9px; letter-spacing: 0.12em; }
   .menu-panel { width: 172px; gap: 15px; }
   .menu-panel.is-open { height: 186px; }
   .menu-item { font-size: 13px; letter-spacing: 0.01em; padding-right: 22px; }
@@ -210,6 +218,7 @@ textarea.field { resize: none; font-family: inherit; }
 @media (max-width: 380px) {
   .logo { font-size: 52px; }
   .nav-logo { left: 18px; }
+  .menu-label { display: none; }
   .statement-line--title { font-size: 24px; }
   .statement-line--body { font-size: 21px; }
   .about-lead { font-size: 26px; }

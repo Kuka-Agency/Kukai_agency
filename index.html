@@ -35,7 +35,8 @@
 <nav id="nav" class="nav" aria-label="Main navigation">
   <div class="nav-bg"></div>
   <button type="button" class="nav-logo" id="navLogo" aria-label="KŪKAI — scroll to top">KŪKAI</button>
-  <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel"></button>
+  <span class="menu-label" aria-hidden="true">Menu</span>
+  <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel"><span class="menu-icon"><span></span><span></span></span></button>
   <div class="menu-panel" id="menuPanel" role="menu">
     <button type="button" class="menu-item" data-delay="1" role="menuitem">About</button>
     <button type="button" class="menu-item" data-delay="2" role="menuitem">Culture Makers</button>
@@ -161,7 +162,7 @@
     <div class="card-info card-info--sm">
       <div class="card-name card-name--sm">francesca hogi</div>
       <div class="card-role card-role--sm">Love Coach / Matchmaker / Author</div>
-      <div class="card-quote card-quote--sm">"Love is an action, not a feeling."</div>
+      <div class="card-quote card-quote--sm">"Love is an action, not just a feeling"</div>
     </div>
   </div>
   <div class="card card--4-1610" data-human-trigger data-target="frankie" role="button" tabindex="0" aria-label="View profile: Frankie Boyle">
@@ -190,6 +191,65 @@
       <div class="card-name">martha fiennes</div>
       <div class="card-role">Cinematic Futurist</div>
       <div class="card-quote">"The future is imagined before it is built."</div>
+    </div>
+  </div>
+  <div class="card card--4-1610" data-human-trigger data-target="asiko" role="button" tabindex="0" aria-label="View profile: Àsìkò">
+    <img decoding="async" class="card-img card-img--gray card-img--hover" src="uploads/asiko-portrait.jpg" alt="Àsìkò">
+    <div class="card-gradient"></div>
+    <div class="card-info">
+      <div class="card-name">àsìkò</div>
+      <div class="card-role">Artist / Ancestral Futurist</div>
+      <div class="card-quote">"To look backwards in order to imagine forward."</div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-overlay" data-profile-overlay="asiko">
+  <div class="profile-inner">
+    <div class="profile-head">
+      <div>
+        <div class="profile-name">àsìkò</div>
+        <div class="profile-role">Artist / Ancestral Futurist</div>
+      </div>
+      <button type="button" class="profile-close" data-close-profile aria-label="Close profile"><span></span><span></span></button>
+    </div>
+    <div class="profile-tab"></div>
+    <div class="profile-grid">
+      <div>
+        <div class="portrait"><img loading="lazy" decoding="async" src="uploads/asiko-portrait.jpg" class="portrait-img portrait-img--gray" alt="Àsìkò portrait"></div>
+        <div class="side-block">
+          <div class="side-label">Links</div>
+          <div class="side-links">
+            <a href="https://asiko-artist.format.com" target="_blank" rel="noopener">Website</a>
+            <a href="https://www.instagram.com/asiko_artist/?hl=en" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://movartgallery.com/collaboration/asiko/" target="_blank" rel="noopener">MOVART Gallery</a>
+            <a href="https://artprize.aestheticamagazine.com/projects/asiko/" target="_blank" rel="noopener">Aesthetica Art Prize</a>
+          </div>
+        </div>
+        <div class="side-block">
+          <div class="side-label">Topics</div>
+          <div class="side-topics">Ancestral Futures — Yoruba Philosophy — Cultural Identity — Diaspora — Art &amp; AI — Mythology — Black Representation — Womanhood — Ritual — Memory — Migration — Cultural Transformation</div>
+        </div>
+      </div>
+      <div>
+        <p class="bio">Àsìkò is a British-Nigerian multidisciplinary artist creating new visual languages from Yoruba philosophy, ancestral memory and contemporary life. Working across photography, film, mixed media and artificial intelligence, he explores how culture evolves as it travels between generations, geographies and technologies. Born in London and raised between Lagos and Britain, his practice occupies the space between cultures, guided by a simple principle: to look backwards in order to imagine forward.</p>
+        <p class="bio">Yoruba concepts of ancestry, spirituality and destiny run throughout his work. Ideas such as Ase, the life force that gives things the power to become; Egúngún, the return of ancestors to the world of the living; and Ori, our inner consciousness and destiny, become starting points for contemporary explorations of identity, migration, womanhood and belonging. In works such as New World Giants, ancestral masquerades appear within everyday British landscapes, creating a powerful meeting point between cultural memory and the present.</p>
+        <p class="bio bio--last">Àsìkò moves fluidly between analogue and digital image-making, increasingly using AI to extend rather than replace ancestral storytelling. His work has been presented at Gagosian London, 1-54 Contemporary African Art Fair, Photo London, NOW Gallery and Southbank Centre, with his recent The Ori That Speaks commission for Nieuwe Instituut bringing Yoruba philosophy into an AI-assisted moving-image work. Across his practice, Àsìkò asks how ancestral knowledge can remain alive not by standing still, but by continually becoming something new.</p>
+        <div class="media-row">
+          <a href="https://www.theguardian.com/artanddesign/2023/mar/29/yoruban-masqueraders-newcastle-asikos-best-photograph" target="_blank" rel="noopener" class="media-item">
+            <div class="media-thumb"><img loading="lazy" decoding="async" src="uploads/asiko-new-world-giants.jpg" alt="New World Giants"></div>
+            <div class="media-caption">New World Giants — Guardian</div>
+          </a>
+          <a href="https://nieuweinstituut.nl/en/articles/screen-commission-asiko" target="_blank" rel="noopener" class="media-item">
+            <div class="media-thumb"><img loading="lazy" decoding="async" src="uploads/asiko-ori-that-speaks.jpg" alt="The Ori That Speaks"></div>
+            <div class="media-caption">The Ori That Speaks — Nieuwe Instituut</div>
+          </a>
+          <a href="https://griotmag.com/en/asikos-visual-representation-of-emotions-the-personal-becomes-universal/" target="_blank" rel="noopener" class="media-item">
+            <div class="media-thumb"><img loading="lazy" decoding="async" src="uploads/asiko-ase.jpg" alt="Ase"></div>
+            <div class="media-caption">Ase — Griot Magazine</div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
