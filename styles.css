@@ -76,8 +76,8 @@ textarea.field { resize: none; font-family: inherit; }
 /* Statement */
 .statement-section { min-height: 100vh; min-height: 100svh; overflow: clip; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 64px; max-width: 1300px; margin: 0 auto; text-align: left; scroll-snap-align: center; }
 .statement-line { position: relative; font-family: 'General Sans', sans-serif; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: oklch(12% 0.002 90); text-transform: uppercase; }
-.statement-line--title { font-size: 64px; }
-.statement-line--body { font-size: 54px; margin-top: 32px; }
+.statement-line--title { font-size: min(64px, 6.6vh); }
+.statement-line--body { font-size: min(54px, 5.6vh); margin-top: min(32px, 3.4vh); }
 .dust-layer { position: absolute; inset: 0; pointer-events: none; overflow: clip; }
 
 /* About */
