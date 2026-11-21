@@ -93,6 +93,12 @@
     var logo = $('#logo'), tagline = $('#tagline');
     if (logo) { logo.style.transform = 'scale(' + scale + ')'; logo.style.opacity = opacity; }
     if (tagline) tagline.style.opacity = taglineOpacity;
+    var cue = $('#scrollCue');
+    if (cue) {
+      var cueOpacity = Math.max(0, 1 - t * 8);
+      cue.style.opacity = cueOpacity;
+      cue.style.pointerEvents = cueOpacity > 0.05 ? '' : 'none';
+    }
 
     var navVisible = window.scrollY >= vh * 1.9;
     if (navVisible !== state.navVisible) {
@@ -249,6 +255,12 @@
     window.addEventListener('resize', debounce(applyGridLayout, 250));
     window.addEventListener('scroll', handleScroll, { passive: true });
 
+    var scrollCue = $('#scrollCue');
+    if (scrollCue) scrollCue.addEventListener('click', function () {
+      var target = document.querySelector('.video-section');
+      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+    });
+
     $('#navLogo').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     $('#menuToggle').addEventListener('click', onMenuToggle);
     $('#menuPanel').addEventListener('click', onMenuToggle);
@@ -265,6 +277,25 @@
 
     var video = $('#mainVideo');
     video.addEventListener('ended', function () { video.currentTime = 0; video.play(); });
+
+    /* Load the large background video only after the page has finished loading,
+       and only once its section is near the viewport, so it never blocks first render. */
+    function loadVideo() {
+      if (!video.dataset.src || video.getAttribute('src')) return;
+      video.src = video.dataset.src;
+      video.preload = 'auto';
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    function armVideo() {
+      if (!('IntersectionObserver' in window)) { loadVideo(); return; }
+      var vio = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { vio.disconnect(); loadVideo(); }
+      }, { rootMargin: '100% 0px' });
+      vio.observe(video.parentNode);
+    }
+    if (document.readyState === 'complete') armVideo();
+    else window.addEventListener('load', armVideo, { once: true });
 
     $all('[data-human-trigger]').forEach(function (card) {
       card.addEventListener('click', function () { openProfile(card.dataset.target); });

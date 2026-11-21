@@ -68,6 +68,13 @@ textarea.field { resize: none; font-family: inherit; }
 .logo { font-family: 'General Sans', sans-serif; font-size: 158px; font-weight: 700; letter-spacing: -0.01em; color: oklch(12% 0.002 90); transform-origin: center center; will-change: transform; }
 .logo-text { display: inline-block; animation: heartbeat 1.6s ease-in-out infinite; }
 .tagline { font-family: 'IBM Plex Sans', sans-serif; font-size: 25px; letter-spacing: 0.08em; color: oklch(55% 0.005 90); }
+.scroll-cue { position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); background: none; border: none; padding: 14px; color: oklch(55% 0.005 90); cursor: pointer; transition: opacity 0.3s ease, color 0.3s ease; }
+.scroll-cue:hover { color: #EF3E36; }
+.scroll-cue svg { display: block; animation: cueDrift 2.4s ease-in-out infinite; }
+@keyframes cueDrift {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
 
 /* Video */
 .video-section { height: 100vh; height: 100svh; overflow: clip; position: relative; scroll-snap-align: center; }
@@ -173,6 +180,7 @@ textarea.field { resize: none; font-family: inherit; }
 @media (max-width: 768px) {
   .logo { font-size: 68px; }
   .tagline { font-size: 14px; }
+  .scroll-cue { bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
   .statement-section { padding: 24px; }
   .statement-line--title { font-size: 30px; }
   .statement-line--body { font-size: 26px; }
